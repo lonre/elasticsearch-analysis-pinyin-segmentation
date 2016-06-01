@@ -53,7 +53,9 @@ public class PinyinTokenFilterTest {
 //                "ldh",  // This should not be spliced, since it's more likely to be initial letters
 //                "张学友",
                 "刘de华",  // pinyin and chinese are spliced originally by standard tokenizer
-                "唐朝乐队国际歌"
+                "唐朝乐队国际歌",
+                "BiJiaSuo",
+                "Chunshenfudi"
         );
 
         List<List<String>> results = FluentIterable.from(sources)
