@@ -1,37 +1,48 @@
 package org.elasticsearch.index.analysis.pinyin.entity;
 
 
-import org.elasticsearch.common.collect.Maps;
-
 /**
  * The root node of the tree that contains no value
  */
-public class TrieTree extends TreeNode {
+public class TrieTree implements TreeNode{
+
+    private TreeNode treeNode;
+
+    public TrieTree (boolean allowPrefixCut) {
+        if (allowPrefixCut) treeNode = new TreeNodeWithoutEndpoint();
+        else treeNode = new TreeNodeWithEndpoint();
+    }
 
     public boolean add(char[] string) {
         if (string == null) return false;
 
-        return addChild(string, 0);
+        return treeNode.addChild(string, 0);
     }
 
     public boolean contains(char[] string) {
         if (string == null || string.length == 0) return false;
-        return containsStringInChildren(string, 0);
+        return treeNode.containsStringInChildren(string, 0);
     }
 
 
-    /**
-     * add a tree node whose children are all itself with the key be number from 0 to 9, inclusive
-     * in order to present a number (may be with infinite length)
-     */
+    @Override
+    public boolean addChild(char[] string, int index) {
+        return treeNode.addChild(string, index);
+    }
+
+    @Override
+    public int findEndIndexInChildren(char[] string, int index) {
+        return treeNode.findEndIndexInChildren(string, index);
+    }
+
+    @Override
+    public boolean containsStringInChildren(char[] string, int index) {
+        return treeNode.containsStringInChildren(string, index);
+    }
+
+    @Override
     public void addNumberNode() {
-        TreeNode numberNode = new TreeNode();
-        numberNode.children = Maps.newHashMap();
-        numberNode.endpoint = true;
-        for (char i = '0'; i <= '9'; i++) {
-            numberNode.children.put(i, numberNode);
-            children.put(i, numberNode);
-        }
+        treeNode.addNumberNode();
     }
 }
 

@@ -7,7 +7,7 @@ public class TrieTreeTest {
 
     @Test
     public void testFindEndIndex() throws Exception {
-        TrieTree trieTree = new TrieTree();
+        TrieTree trieTree = new TrieTree(true);
 
         trieTree.add("abcd".toCharArray());
         trieTree.add("def".toCharArray());
@@ -22,7 +22,7 @@ public class TrieTreeTest {
 
     @Test
     public void testContains() throws Exception {
-        TrieTree trieTree = new TrieTree();
+        TrieTree trieTree = new TrieTree(true);
 
         String s = "asd";
         Assert.assertFalse(trieTree.contains(s.toCharArray()));

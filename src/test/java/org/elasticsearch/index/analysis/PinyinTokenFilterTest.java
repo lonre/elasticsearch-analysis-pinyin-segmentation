@@ -27,31 +27,31 @@ public class PinyinTokenFilterTest {
 
 
         List<String> sources = Lists.newArrayList(
-//                "changanguojizhongxin",
-//                "jinsenianhuajiayuan",
-//                "pingangongyu",
-//                "tiananguojidasha",
-//                "shenangongyu",
-//                "jinianxiaoqu",
-//                "longhuchunjiangbian",
-//                "xinyuanhuanmingjia",
-//                "jinchengjianangongyu",
-//                "kunxianghuayuan",
-//                "lvdijianianhua",
-//                "xianingxiang",
-//                "shuiyurenjiananyuan",
-//                "jianingnayouyiguangchang",
-//                "naoujiayuan",
-//                "pangu",
-//                "PanguGongyuan",
-//                "liwanquenzhoubeihengjie",
-//                "hengange",
-//                "jinchengangenong", // FIXME more ambiguity segmentation
-//                "baoan35quanhuagongyequgonglujusushe", // FIXED, by improving the FMM algorithm
-//                "baojioujun",  //FIXED, by improving the FMM algorithm
-//                "刘德华",
-//                "ldh",  // This should not be spliced, since it's more likely to be initial letters
-//                "张学友",
+                "changanguojizhongxin",
+                "jinsenianhuajiayuan",
+                "pingangongyu",
+                "tiananguojidasha",
+                "shenangongyu",
+                "jinianxiaoqu",
+                "longhuchunjiangbian",
+                "xinyuanhuanmingjia",
+                "jinchengjianangongyu",
+                "kunxianghuayuan",
+                "lvdijianianhua",
+                "xianingxiang",
+                "shuiyurenjiananyuan",
+                "jianingnayouyiguangchang",
+                "naoujiayuan",
+                "pangu",
+                "PanguGongyuan",
+                "liwanquenzhoubeihengjie",
+                "hengange",
+                "jinchengangenong", // FIXME more ambiguity segmentation
+                "baoan35quanhuagongyequgonglujusushe", // FIXED, by improving the FMM algorithm
+                "baojioujun",  //FIXED, by improving the FMM algorithm
+                "刘德华",
+                "ldh",  // This should not be spliced, since it's more likely to be initial letters
+                "张学友",
                 "刘de华",  // pinyin and chinese are spliced originally by standard tokenizer
                 "唐朝乐队国际歌",
                 "BiJiaSuo",
