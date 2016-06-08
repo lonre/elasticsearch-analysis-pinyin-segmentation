@@ -1,15 +1,15 @@
 package org.elasticsearch.index.analysis;
 
+import com.google.common.base.Function;
+import com.google.common.collect.FluentIterable;
+import com.google.common.collect.Lists;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
-import org.apache.lucene.util.Version;
-import org.elasticsearch.common.base.Function;
-import org.elasticsearch.common.collect.FluentIterable;
-import org.elasticsearch.common.collect.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -55,7 +55,8 @@ public class PinyinTokenFilterTest {
                 "刘de华",  // pinyin and chinese are spliced originally by standard tokenizer
                 "唐朝乐队国际歌",
                 "BiJiaSuo",
-                "Chunshenfudi"
+                "Chunshenfudi",
+                "zhonghuarenmingongheguo"
         );
 
         List<List<String>> results = FluentIterable.from(sources)
@@ -71,18 +72,18 @@ public class PinyinTokenFilterTest {
                     }
                 }).toList();
 
-        for (List<String> r: results) {
+        for (List<String> r : results) {
             System.out.println(r);
         }
     }
 
     private List<String> getTokens(String string) throws IOException {
         StringReader sr = new StringReader(string);
-        Analyzer analyzer = new StandardAnalyzer(Version.LUCENE_41);
-        PinyinTokenFilter pinyinTokenFilter = new PinyinTokenFilter(analyzer.tokenStream("f",sr));
+        Analyzer analyzer = new StandardAnalyzer();
+        PinyinTokenFilter pinyinTokenFilter = new PinyinTokenFilter(analyzer.tokenStream("f", sr));
         PinyinSegmentationTokenFilter segmentationTokenFilter =
                 new PinyinSegmentationTokenFilter(pinyinTokenFilter);
-        List<String> pinyin= Lists.newArrayList();
+        List<String> pinyin = Lists.newArrayList();
         TokenFilter filter = segmentationTokenFilter;
         filter.reset();
         int position = 0;

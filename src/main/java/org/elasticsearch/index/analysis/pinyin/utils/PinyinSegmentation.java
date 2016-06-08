@@ -1,6 +1,7 @@
 package org.elasticsearch.index.analysis.pinyin.utils;
 
-import org.elasticsearch.common.collect.Lists;
+import com.google.common.collect.Lists;
+
 import org.elasticsearch.index.analysis.pinyin.entity.TokenEntity;
 
 import java.util.Collections;
@@ -32,23 +33,23 @@ public class PinyinSegmentation {
 
     public List<TokenEntity> split(String s) {
         List<String> splitted = FMMSegmentation.split(s);
-        if ( splitted.size() * 1.0 / s.length() > INITIAL_LETTER_THRES) {
+        if (splitted.size() * 1.0 / s.length() > INITIAL_LETTER_THRES) {
             // if the number of splitted words is more than half of the length of s,
             // then assume that s is a string of initial letters
             // for example given 'ldh' splitted to 'l' 'd' 'h', equal to the size of 'ldh'
             // so 'ldh' is more likely to be the init letters of "liudehua" but not three terms
 
             return Lists.newArrayList(new TokenEntity()
-                            .setBeginOffset(0)
-                            .setEndOffset(s.length())
-                            .setRelativePosition(0)
-                            .setValue(s));
+                    .setBeginOffset(0)
+                    .setEndOffset(s.length())
+                    .setRelativePosition(0)
+                    .setValue(s));
         }
 
         List<TokenEntity> rawPinyins = TokenEntity.wrap(splitted);
         List<TokenEntity> initialLetters;
         if (initialLetterMode) {
-           initialLetters = grepInitialLetters(rawPinyins);
+            initialLetters = grepInitialLetters(rawPinyins);
         }
         OverlapAmbiguitySolver.solve(rawPinyins);
         CombinationAmbiguitySolver.solve(rawPinyins);

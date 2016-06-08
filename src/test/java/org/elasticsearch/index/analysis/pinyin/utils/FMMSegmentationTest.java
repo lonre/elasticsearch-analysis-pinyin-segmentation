@@ -1,7 +1,9 @@
 package org.elasticsearch.index.analysis.pinyin.utils;
 
+import com.google.common.collect.Lists;
+
 import junit.framework.TestCase;
-import org.elasticsearch.common.collect.Lists;
+
 import org.junit.Assert;
 
 import java.io.BufferedReader;

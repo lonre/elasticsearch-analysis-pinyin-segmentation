@@ -1,6 +1,7 @@
 package org.elasticsearch.index.analysis.pinyin.entity;
 
-import org.elasticsearch.common.collect.Maps;
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.Maps;
 
 import java.util.Map;
 
@@ -24,12 +25,12 @@ public class TreeNodeWithEndpoint implements TreeNode {
         }
         char c = string[index];
         if (children.containsKey(c)) {
-            return children.get(c).addChild(string, index+1);
+            return children.get(c).addChild(string, index + 1);
         } else {
             TreeNodeWithEndpoint child = new TreeNodeWithEndpoint();
             child.value = c;
             children.put(c, child);
-            return child.addChild(string, index+1);
+            return child.addChild(string, index + 1);
         }
     }
 
@@ -37,8 +38,9 @@ public class TreeNodeWithEndpoint implements TreeNode {
      * find the endIndex that string[index], string[index+1], ... , string[endIndex-1]
      * composes a string that can be found from the children and
      * string[index], string[index+1], ... , string[endIndex] cannot be found
+     *
      * @param string string
-     * @param index index
+     * @param index  index
      * @return endIndex
      */
     @Override
@@ -84,7 +86,7 @@ public class TreeNodeWithEndpoint implements TreeNode {
 
     @Override
     public String toString() {
-        return org.elasticsearch.common.base.MoreObjects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("children", children)
                 .add("value", value)
                 .add("endpoint", endpoint)

@@ -1,6 +1,7 @@
 package org.elasticsearch.index.analysis.pinyin.entity;
 
-import org.elasticsearch.common.collect.Lists;
+import com.google.common.collect.Lists;
+
 import org.junit.Test;
 
 import java.util.List;

@@ -9,8 +9,9 @@ public interface TreeNode {
      * find the endIndex that string[index], string[index+1], ... , string[endIndex-1]
      * composes a string that can be found from the children and
      * string[index], string[index+1], ... , string[endIndex] cannot be found
+     *
      * @param string string
-     * @param index index
+     * @param index  index
      * @return endIndex
      */
     public int findEndIndexInChildren(char[] string, int index);

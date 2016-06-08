@@ -1,14 +1,13 @@
 package org.elasticsearch.index.analysis.pinyin.entity;
 
-
 /**
  * The root node of the tree that contains no value
  */
-public class TrieTree implements TreeNode{
+public class TrieTree implements TreeNode {
 
     private TreeNode treeNode;
 
-    public TrieTree (boolean allowPrefixCut) {
+    public TrieTree(boolean allowPrefixCut) {
         if (allowPrefixCut) treeNode = new TreeNodeWithoutEndpoint();
         else treeNode = new TreeNodeWithEndpoint();
     }

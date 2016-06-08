@@ -1,6 +1,7 @@
 package org.elasticsearch.index.analysis.pinyin.entity;
 
-import org.elasticsearch.common.collect.Lists;
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class TokenEntity {
 
     @Override
     public String toString() {
-        return org.elasticsearch.common.base.MoreObjects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("value", value)
                 .add("beginOffset", beginOffset)
                 .add("endOffset", endOffset)

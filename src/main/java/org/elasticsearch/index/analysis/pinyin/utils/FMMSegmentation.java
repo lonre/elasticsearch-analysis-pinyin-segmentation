@@ -1,11 +1,15 @@
 package org.elasticsearch.index.analysis.pinyin.utils;
 
-import org.elasticsearch.common.collect.Lists;
+import com.google.common.collect.Lists;
+
 import org.elasticsearch.common.logging.ESLogger;
 import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.index.analysis.pinyin.entity.TrieTree;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -18,11 +22,11 @@ public class FMMSegmentation {
 
     static {
         try (
-             InputStream fis = Thread.currentThread()
-                     .getContextClassLoader()
-                     .getResourceAsStream("spell.txt");
-             InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
-             BufferedReader br = new BufferedReader(isr)
+                InputStream fis = Thread.currentThread()
+                        .getContextClassLoader()
+                        .getResourceAsStream("spell.txt");
+                InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
+                BufferedReader br = new BufferedReader(isr)
         ) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -37,13 +41,14 @@ public class FMMSegmentation {
     /**
      * This is a Regular-Expression based implementation
      * "fh" is not split in this implementation
+     *
      * @param s
      * @return
      */
     public static List<String> splitSpell(String s) {
         String regEx = "[^aoeiuv]?h?[iuv]?(ai|ei|ao|ou|er|ang?|eng?|ong|a|o|e|i|u|ng|n)?";
         int tag;
-        List<String> tokenResult = Lists.newArrayList();;
+        List<String> tokenResult = Lists.newArrayList();
         Pattern pat = Pattern.compile(regEx);
         for (int i = s.length(); i > 0; i = i - tag) {
             Matcher matcher = pat.matcher(s);
