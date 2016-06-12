@@ -22,9 +22,7 @@ public class FMMSegmentation {
 
     static {
         try (
-                InputStream fis = Thread.currentThread()
-                        .getContextClassLoader()
-                        .getResourceAsStream("spell.txt");
+                InputStream fis = FMMSegmentation.class.getClassLoader().getResourceAsStream("spell.txt");
                 InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
                 BufferedReader br = new BufferedReader(isr)
         ) {
@@ -33,6 +31,7 @@ public class FMMSegmentation {
                 trieTree.add(line.toCharArray());
             }
             trieTree.addNumberNode();
+            br.close();
         } catch (IOException e) {
             logger.error("Load spell error {}", e);
         }
