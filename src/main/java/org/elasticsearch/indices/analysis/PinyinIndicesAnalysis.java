@@ -14,15 +14,27 @@ public class PinyinIndicesAnalysis extends AbstractComponent {
     public PinyinIndicesAnalysis(Settings settings, IndicesAnalysisService indicesAnalysisService) {
         super(settings);
 
-        indicesAnalysisService.tokenFilterFactories().put("pinyin_segment", new PreBuiltTokenFilterFactoryFactory(new TokenFilterFactory() {
+        indicesAnalysisService.tokenFilterFactories().put("pinyin_seg", new PreBuiltTokenFilterFactoryFactory(new TokenFilterFactory() {
             @Override
             public String name() {
-                return "pinyin_segment";
+                return "pinyin_seg";
             }
 
             @Override
             public TokenStream create(TokenStream tokenStream) {
-                return new PinyinSegmentationTokenFilter(new PinyinTokenFilter(tokenStream));
+                return new PinyinSegmentationTokenFilter(tokenStream);
+            }
+        }));
+
+        indicesAnalysisService.tokenFilterFactories().put("pinyin_tra", new PreBuiltTokenFilterFactoryFactory(new TokenFilterFactory() {
+            @Override
+            public String name() {
+                return "pinyin_tra";
+            }
+
+            @Override
+            public TokenStream create(TokenStream tokenStream) {
+                return new PinyinTokenFilter(tokenStream);
             }
         }));
     }
