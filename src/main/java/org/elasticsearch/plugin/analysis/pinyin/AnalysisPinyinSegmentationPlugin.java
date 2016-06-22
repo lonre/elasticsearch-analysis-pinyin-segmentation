@@ -3,6 +3,8 @@ package org.elasticsearch.plugin.analysis.pinyin;
 import org.elasticsearch.common.inject.Module;
 import org.elasticsearch.index.analysis.AnalysisModule;
 import org.elasticsearch.index.analysis.PinyinAnalysisBinderProcessor;
+import org.elasticsearch.index.similarity.CsSimilarityProvider;
+import org.elasticsearch.index.similarity.SimilarityModule;
 import org.elasticsearch.indices.analysis.PinyinIndicesAnalysisModule;
 import org.elasticsearch.plugins.Plugin;
 
@@ -32,5 +34,9 @@ public class AnalysisPinyinSegmentationPlugin extends Plugin {
 
     public void onModule(AnalysisModule module) {
         module.addProcessor(new PinyinAnalysisBinderProcessor());
+    }
+
+    public void onModule(SimilarityModule module) {
+        module.addSimilarity("CsSimilarity", CsSimilarityProvider.class);
     }
 }
