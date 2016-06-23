@@ -19,7 +19,7 @@
     </licenses>
 
     <properties>
-        <elasticsearch.version>2.2.1</elasticsearch.version>
+        <elasticsearch.version>2.2.2</elasticsearch.version>
         <elasticsearch.plugin.name>analysis-pinyin-segmentation</elasticsearch.plugin.name>
         <elasticsearch.plugin.classname>org.elasticsearch.plugin.analysis.pinyin.AnalysisPinyinSegmentationPlugin
         </elasticsearch.plugin.classname>
